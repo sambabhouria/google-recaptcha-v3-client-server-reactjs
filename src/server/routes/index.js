@@ -13,12 +13,8 @@ routes.get("/about", (req, res) => {
 
 // verify reCAPTCHA response
 routes.post('/verify', (req, res) => {
-    console.log('donner envoyer a google======> ',req.body )
-    const standToGoogle = {
-        name: 'smba',
-        email: 'sambabhouria@gmail.com',
-        'g-recaptcha-response': '03AGdBq26QD5Ihkot9ouVVydEMe6kjmGQ_NHWeispLMv2BIco651aeTBagUD5ohqDVjVACsyzumOObg1TJejLh7UAZuih5pXD8DX75gsuMrtOrGk_7G7XdDjAQGko_Nz_zF2BNioMV_hMVqB27XR2-Elmkjxi7DrCCDt4BYpz91OL9QLLNuBq7PUT7knnCW4BlRqa1i7W0vLow7hoNEY05i183BEOYn2l4tk46UuFFA85Zh2jJfqbjrQ83j3eqlcNDBUuD8DyVODpBlfxTzedY3H9JBI3zpwuktKnwarHxBjgA0tzkYc2MgpUYkSSJlplGxhaFw---zXNEpcJ0-KJcLOmcuIg99CSd-3DTVrzXoPnR6Ux4T0bnj8i8F5JSX0hUlt-IfRYnTcz4vpm2YCntnA9ZCkvLLCXotK6-fGxE1x3iZJCFYZBBDnDYZY5DZ7tsg2KIUVvoRImeP0-59AM7WpDMgQI8Lu0no97ovr4Q2ySneM-UweOhkLI'
-      }
+
+    console.log('in the verify fonction ===>', req.body);
     var VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${req.body['g-recaptcha-response']}`;
     return fetch(VERIFY_URL, { method: 'POST' })
       .then(res => res.json())
@@ -26,15 +22,16 @@ routes.post('/verify', (req, res) => {
 });
 
 routes.post('/submit', (req, res) => {
+
     const {
         emailVal,
         messageVal,
         token
     } = req.body
-   console.log('body request', req.body)
-//    console.log('token envoyer a google', token)
-     const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${token}`
-    // var VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${req.body['g-recaptcha-response']}`;
+    console.log('in the submit fonction ===>', req.body);
+      const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${token}`
+    // var verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${req.body['g-recaptcha-response']}`;
+
     if (!token) {
         return res.json({
             "msg": 'There was a problem with your request. Please try again later.',

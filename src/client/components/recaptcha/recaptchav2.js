@@ -57,15 +57,18 @@ function Recaptchav2() {
       fetch("http://localhost:4000/submit", {
         method: "POST",
         headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: data,
-        // body: JSON.stringify({
-        //   "message": messageVal,
-        //   "email": emailVal,
-        //   "g-recaptcha-response": token
-        // })
+        // headers: {
+        //   Accept: "application/json, text/plain, */*",
+        //   "Content-type": "application/json",
+        // },
+        body: JSON.stringify({
+          "name": messageVal,
+          "email": emailVal,
+          token
+        })
+        // body: data,
       })
         .then(res => res.json())
         .then(data => {
@@ -78,12 +81,11 @@ function Recaptchav2() {
     return (
         <form onSubmit={handleSubmit} className="app">
           <div className="div-form">
-            {/* <label htmlFor="email">Email</label> */}
             <label>Email: </label>
             <input type="text" name="email" id="email" {...email} required />
           </div>
           <div className="div-form">
-            {/* <label htmlFor="message">Message</label> */}
+
             <label>Message: </label>
             <textarea
                 name="message"

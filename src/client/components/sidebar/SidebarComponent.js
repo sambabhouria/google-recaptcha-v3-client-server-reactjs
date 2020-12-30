@@ -61,6 +61,13 @@ function SidebarComponent() {
                 icon={IconContacts}
                 onClick={() => onClick(SLUGS.contacts)}
             />
+
+             <MenuItem
+                id={SLUGS.contacts}
+                title='Rcaptcha Version 3'
+                icon={IconContacts}
+                onClick={() => onClick(SLUGS.subscription)}
+            />
             <MenuItem
                 id={SLUGS.agents}
                 title='Standard Rcaptcha'

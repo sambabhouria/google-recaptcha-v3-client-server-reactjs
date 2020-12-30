@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import './recaptcha.css';
 
-const SITE_KEY = "6LfHPAsaAAAAAFUk19J-OMCnIPn7ZJKbOfQmLErp";
+const SITE_KEY = "";
 
 function RecaptchaV1() {
 
